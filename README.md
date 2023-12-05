@@ -51,6 +51,28 @@ vim /etc/net/ifaces/ens192/options
 Сохраняем изменения
 ```
 Esc: wq
+
+Далее задаем нужный адрес на интр:
+```
+echo 192.168.0.170/30 > /etc/net/ifaces/ens192/ipv4address
+```
+Добавляем шлюз
+```
+echo default via x.x.x.x > /etc/resolv.conf
+```
+Настройка DNS-сервера
+```
+echo nameserver 8.8.8.8 > /etc/resolv.conf
+```
+Перезагружаем сеть
+```
+service network restart
+```
+Проверяем результат
+```
+ip a
+```
+Если 
 ```
 
 
