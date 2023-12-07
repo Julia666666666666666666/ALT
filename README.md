@@ -48,6 +48,7 @@ e. Пул адресов для сети офиса HQ - не более 64.
 ## Выполнение задания 
 
 Сначала просмотрим интерфейсы
+
 ```
 ip a
 ```
@@ -55,7 +56,9 @@ ip a
 ```
 su
 ```
+
 Далее нужно открыть файл options для нужного интерфейса
+
 ```
 vim /etc/net/ifaces/ens192/options
 ```
@@ -67,7 +70,7 @@ vim /etc/net/ifaces/ens192/options
 Сохраняем изменения
 ```
 Esc: wq
-
+```
 Далее задаем нужный адрес на интр:
 
 ```
@@ -77,28 +80,85 @@ echo 192.168.0.170/30 > /etc/net/ifaces/ens192/ipv4address
 Добавляем шлюз
 
 ```
-echo default via x.x.x.x > /etc/resolv.conf
+echo default via x.x.x.x > /etc/net/ifaces/ens__/ipv4address
 ```
 
 Настройка DNS-сервера
+
 ```
 echo nameserver 8.8.8.8 > /etc/resolv.conf
 ```
+
 Перезагружаем сеть
+
 ```
 service network restart
 ```
+
 Проверяем результат
+
 ```
 ip a
 ```
+
 Чтобы добавить интерфейс
+
 ```
 mkdir /etc/net/ifaces/ens__
 ```
+
 Далее нужно открыть файл options для нужного интерфейса
 
 ```
 vim /etc/net/ifaces/ens__/options
 ```
 Клавиша Insert чтобы редактировать
+
+
+## NAT (ISP,HQ-R,BR-R)
+
+
+У интерфейсов в папке options должны быть значения:
+```
+NM_CONTROLLED=no
+
+DISABLED=no
+```
+
+Утанавливаем FIREWALLD
+
+```
+apt-get -y install firewalld
+```
+
+Вкл автозагрузку
+
+```
+systemctl enable --now firewalld
+```
+
+Добавл. правила к вход. пакетам
+
+```
+firewall-cmd --permanent --zone=public --add-interface=ens33
+
+firewall-cmd --permanent --zone=public --add-interface=ens33
+```
+
+Включ. NAT
+
+```
+firewall-cmd --permanent --zone=public --add-masquerade
+```
+
+Сохр. правила
+
+```
+firewall-cmd --reload
+```
+
+Если не работает то 
+
+```
+systemctl disable network.service NetworkManager
+```
