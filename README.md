@@ -149,7 +149,7 @@ systemctl enable --now firewalld
 ```
 firewall-cmd --permanent --zone=public --add-interface=ens33
 
-firewall-cmd --permanent --zone=public --add-interface=ens33
+firewall-cmd --permanent --zone=trusted --add-interface=ens33
 ```
 
 Включ. NAT
