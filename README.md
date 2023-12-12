@@ -130,6 +130,11 @@ DISABLED=no
 Утанавливаем FIREWALLD
 
 ```
+apt-get update
+```
+Далее
+
+```
 apt-get -y install firewalld
 ```
 
@@ -164,3 +169,22 @@ firewall-cmd --reload
 ```
 systemctl disable network.service NetworkManager
 ```
+## Настройка туннеля на HQ-R и BR-R
+
+Создаем директорию
+```
+mkdir /etc/net/ifaces/tun1
+```
+Далее открываем файл options с использ. vim или nano
+
+```
+vim /etc/net/ifaces/tun1/options
+```
+В нем записываем следщ.
+
+![image](https://github.com/Julia666666666666666666/ALT/assets/148867585/4bf042f7-d12f-4d79-8648-6cfba381f99a)
+
+
+![image](https://github.com/Julia666666666666666666/ALT/assets/148867585/6b6da3b9-bddd-441e-a421-6391df0f8df3)
+
+
