@@ -215,8 +215,36 @@ vtysh
 ```
 conf t
 
-router ospf 
+router ospf
 
+net  192.168.0.166/30 area 0
+
+net 192.168.0.162/30 area 0
+
+do sh ip ospf neighbor
+
+ip forwarding
+
+do wr
+
+exit
+```
+После настраиваем FRR на HQ-R-1 & BR-R-2
+```
+
+1- 192.168.0.162/30
+
+192.168.0.1/25
+
+2-192.168.0.166/30
+
+192.168.0.129/27
+```
+Проверяем настройки пингом:
+
+HQ-SRV c BR-SRV
+
+BR-SRV c HQ-SRV
 
 
 
