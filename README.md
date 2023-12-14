@@ -187,4 +187,8 @@ vim /etc/net/ifaces/tun1/options
 
 ![image](https://github.com/Julia666666666666666666/ALT/assets/148867585/6b6da3b9-bddd-441e-a421-6391df0f8df3)
 
+## OSPF(ISP, HQ-R, BR-R)
+
+
+
 
