@@ -189,6 +189,34 @@ vim /etc/net/ifaces/tun1/options
 
 ## OSPF(ISP, HQ-R, BR-R)
 
+На устройстве ISP устанавливаем ffr:  
+```
+apt update 
+
+apt install frr
+```
+После отк файл: 
+```
+nano /etc/frr/daemons
+```
+Меняем значения: 
+```
+ospfd=yes 
+```
+Перезагружаем: 
+```
+systemctl restart frr
+```
+Переходим в среду роутера:
+```
+vtysh
+```
+Далее настраиваем frr для ближ. устр:
+```
+conf t
+
+router ospf 
+
 
 
 
