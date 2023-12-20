@@ -250,6 +250,84 @@ HQ-SRV c BR-SRV
 a. Учтите, что у сервера должен быть зарезервирован адрес.
 
 
+Установливаем пакеты на HQ-R:
+
+```
+apt-get -y install dhcp-server
+```
+Переходим в файл:
+```
+/etc/sysconfig/dhcpd
+```
+И указываем интерфейс внутренней сети к (HQ-SRV):
+
+```
+DHCPDARGS=ens192
+```
+
+Копируем образец:
+
+```
+cp /etc/dhcp/dhcpd.conf.sample /etc/dhcp/dhcpd.conf
+```
+Далее переходим в файл:
+
+```
+/etc/dhcp/dhcpd.conf 
+```
+И пишем там:
+
+![изображение](https://github.com/Julia666666666666666666/ALT/assets/148867585/f62d7344-b3b3-43f5-a450-568f8213d725)
+
+После перезагружаем службу:
+
+```
+systemctl restart dhcpd
+```
+Проверяем статус службы
+```
+systemctl status dhcpd.service
+```
+Автозагрузка:
+```
+chkconfig dhcpd on
+
+service dhcpd start
+```
+### Настройка на HQ-SRV (клиент):
+
+Переходим в файл:
+```
+vim /etc/net/ifaces/ens18/ipv4address
+```
+Прописываем в файле:
+```
+#192.168.0.40
+```
+Далее открываем файл для нужного интерфейса:
+```
+nano /etc/net/ifaces/ens18/options
+```
+Меняем значения на
+```
+BOOTROTO=dhcp
+
+NM_CONTROLLED=yes
+
+DISABLED=no
+
+CONFIG_IPV4=yes
+```
+Перезагружаем службу
+```
+systemctl reboot
+```
+
+Проверка:
+
+![изображение](https://github.com/Julia666666666666666666/ALT/assets/148867585/89dac9cb-e20a-48c0-ae32-c2c198cbaaf3)
+
+Адрес поменялся
 
 
 
