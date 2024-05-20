@@ -365,7 +365,37 @@ nano /etc/passwd
 
 Измерьте пропускную способность сети между двумя узлами HQ-R-ISP по средствам утилиты iperf 3. Предоставьте описание пропускной способности канала со скриншотами.
 
+# Модуль 2
+
+1. Установила виртуальную машину на ALT Linux (должна иметь доступ к интернету)
+
+2. Установила Docker.
+
+```
+apt-get update && apt-get install -y docker-engine
+```
+
+```
+systemctl enable --now docker
+```
+
+3. Запустила контейнер «Hello World»
+```
+docker pull hello-world
+```
+4. Смотрим список контейнеров:
+
+```
+docker images
+```
+5. Запускаем контейнер Hello-World
+   ```
+   docker run hello-world
+   ```
+6.Удаляем контейнер
+```
+docker rm *имя или ID контейнера*
+```
 
 
-
-
+   
