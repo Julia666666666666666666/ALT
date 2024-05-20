@@ -394,7 +394,7 @@ docker images
    ```
 6.Удаляем контейнер
 ```
-docker rm *имя или ID контейнера*
+docker image rm -f hello-world
 ```
 
 
