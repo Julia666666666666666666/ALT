@@ -396,6 +396,28 @@ docker images
 ```
 docker image rm -f hello-world
 ```
+3.	Запустить контейнер «NGINX» с мапингом порта 80. Сервер NGINX должен быть доступен с внешних устройств.
 
+Сначала скачиваем nginx
+```
+apt-get update
+apt-get install nginx -y
+```
+Запуск
 
-   
+```
+systemctl enabled --now nginx
+```
+Запуск в докере
+```
+docker pull nginx
+```
+Прописываем эту команду
+```
+docker run --rm -d --name nginx -v /data/app:/var/www/html -p 0.0.0.0:80:80 nginx
+```
+и проверяем работу
+```
+docker ps
+```
+Прописываем айпи, который выходит в интернет
