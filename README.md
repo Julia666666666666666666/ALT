@@ -361,9 +361,6 @@ nano /etc/passwd
 
 ![изображение](https://github.com/Julia666666666666666666/ALT/assets/148867585/f547818d-24e1-4372-8eb6-914838d411b6)
 
-## IPERF 3
-
-Измерьте пропускную способность сети между двумя узлами HQ-R-ISP по средствам утилиты iperf 3. Предоставьте описание пропускной способности канала со скриншотами.
 
 # Модуль 2
 
@@ -373,51 +370,86 @@ nano /etc/passwd
 
 ```
 apt-get update && apt-get install -y docker-engine
-```
 
-```
 systemctl enable --now docker
 ```
 
 3. Запустила контейнер «Hello World»
+
 ```
 docker pull hello-world
 ```
+
 4. Смотрим список контейнеров:
 
 ```
 docker images
 ```
+
 5. Запускаем контейнер Hello-World
-   ```
-   docker run hello-world
-   ```
+   
+```
+docker run hello-world
+```
+
 6.Удаляем контейнер
+
 ```
 docker image rm -f hello-world
 ```
-3.	Запустить контейнер «NGINX» с мапингом порта 80. Сервер NGINX должен быть доступен с внешних устройств.
+
+7.Запустить контейнер «NGINX» с мапингом порта 80. Сервер NGINX должен быть доступен с внешних устройств.
 
 Сначала скачиваем nginx
+
 ```
 apt-get update
 apt-get install nginx -y
 ```
+
 Запуск
 
 ```
 systemctl enabled --now nginx
 ```
+
 Запуск в докере
+
 ```
 docker pull nginx
 ```
+
 Прописываем эту команду
+
 ```
 docker run --rm -d --name nginx -v /data/app:/var/www/html -p 0.0.0.0:80:80 nginx
 ```
+
 и проверяем работу
+
 ```
 docker ps
 ```
+
 Прописываем айпи, который выходит в интернет
+
+8. На базе образа NGINX последней версии создать катомный образ с измененным файлом index.html. В файле должен быть заготовок h1 с вашей ФИО.
+
+Сначала запускаем интерактивную оболочку в контейнере Docker с помощью docker exec с флагами -i и -t:
+
+```
+docker exec -it nginx /bin/bash
+```
+
+Пока мы можем только просматривать файлы, поэтому чтобы начать их редактировать нужно будет заново скачать программу, которой мы пользуемся для редака файлов, а именно nano или vim:
+
+```
+apt-get update
+apt-get install -y nano
+```
+
+Далее необходимо открыть файл index.html:
+
+```
+nano /usr/share/nginx/html/index.html
+```
